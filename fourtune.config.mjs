@@ -1,17 +1,8 @@
-import {generateFromTemplate} from "fourtune/autogenerate"
-
-const asyncToSync = {
-	"import {mkdir} from \"@anio-fs/api/async\"": "import {mkdir} from \"@anio-fs/api/sync\"",
-	"export default async function": "export default function",
-	"await mkdir(": "mkdir("
-}
-
 export default {
 	realm: "js",
-	type: "package",
+	type: "package:async/sync",
 
-	autogenerate: {
-		"sync.mjs": generateFromTemplate("src/template.mjs", asyncToSync),
-		"async.mjs": generateFromTemplate("src/template.mjs", {})
+	target: {
+		function_name: "tmpDir"
 	}
 }
